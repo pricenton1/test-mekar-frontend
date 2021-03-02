@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../../assets/admin_icon.svg'
+import image from '../../assets/adminLog.svg'
 import {Container} from "react-bootstrap";
 
 const HomeContainer = () => {

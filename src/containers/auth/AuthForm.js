@@ -81,11 +81,11 @@ const AuthForm = (props) => {
                 props.onLogin()
             }
         }).catch((err) => {
-            if (err.response.data.statusCode === 401) {
+            if (err.result.data.statusCode === 401) {
                 Swal.close()
                 setUserInput({
                     ...userInput,
-                    error: err.response.data.message
+                    error: err.result.data.message
                 })
             } else {
                 Swal.close()
