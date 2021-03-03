@@ -9,6 +9,7 @@ const login = async function (value) {
 
 const register = async function(value){
     const response = await axios.post(BASE_URL+'/register', value)
+    console.log("REGISTER", response)
     return response
 }
 

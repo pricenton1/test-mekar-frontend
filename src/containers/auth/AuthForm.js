@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import loginIcon from "../../assets/login.svg"
 import {LoadingComponent} from "../../component/LoadingComponent";
 import {login, register} from "../../api/AuthService";
+import {showAlert} from "../../component/AlertComponent";
 
 const AuthForm = (props) => {
 
@@ -52,13 +53,10 @@ const AuthForm = (props) => {
             }
         }).catch((err) => {
             if (err.response.data.statusCode === 401) {
-                Swal.close()
-                setUserInput({
-                    ...userInput,
-                    error: err.response.data.message
-                })
+                showAlert('error', 'Account Not Found')
+                
             } else {
-                Swal.close()
+                showAlert('error', 'Account Not Found')
             }
         })
     }
@@ -72,20 +70,18 @@ const AuthForm = (props) => {
         Swal.showLoading()
         register(account).then((result) => {
             if (result.data.statusCode === 201) {
-                Swal.close()
+                showAlert('success', 'Successfull Register')
                 setUserInput({
                     ...userInput,
                     error: ""
                 })
-                sessionStorage.setItem('token', result.data.payload.token.token)
-                props.onLogin()
             }
         }).catch((err) => {
-            if (err.result.data.statusCode === 401) {
+            if (err.data.statusCode === 502) {
                 Swal.close()
                 setUserInput({
                     ...userInput,
-                    error: err.result.data.message
+                    error: err.data.message
                 })
             } else {
                 Swal.close()
@@ -134,7 +130,7 @@ const AuthForm = (props) => {
                             </div>
                             :
                             <div className="container-button mt-4">
-                                <ButtonComponent btnLabel={"register"} validation={validationForm()} click={() => handleRegister()}/>
+                                <ButtonComponent btnLabel={"Register"} validation={validationForm()} click={() => handleRegister()}/>
                             </div>
                     }
 

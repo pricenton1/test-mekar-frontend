@@ -97,12 +97,13 @@
 .login-form{
   display: flex;
   justify-content: center;
-  margin: 180px;
+  margin: 210px ;
   height: 350px;
 }
 
 .card-style{
-  width: 50%;
+  width: 420px;
+  height: 320px;
   background: white;
 }
 
